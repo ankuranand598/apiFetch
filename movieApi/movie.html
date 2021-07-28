@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<title>Movies</title>
+
+<head>
+    <style>
+#detail{
+    display:grid;
+    grid-gap: 5px;
+    border-radius: 5px;
+    grid-template-columns: repeat(6,15%);
+    
+}
+p{
+    text-align: center;
+    margin-top: -1px;
+    font-family: sans-serif;
+}
+img{
+    padding-top: 10px;
+    height: 200px;
+    width: 100%;
+}
+    </style>
+</head>
+
+<body>
+    <h1>Api Fetch for movie</h1>
+    <input id="name" placeholder="enter movie" />
+    <button onclick="getMovie()">check</button>
+    <div id="detail"></div>
+</body>
+
+</html>
+<script src="movie.js"></script>
