@@ -70,12 +70,12 @@
             return el.id.videoId != undefined;
         });
         items.forEach(({id:{videoId}})=>{
-            //console.log(videoId);
+            console.log(videoId);
             let div =document.createElement('div');
             let div2= document.createElement('div');
             div2.setAttribute('id','detail2')
             let p1= document.createElement('p');
-            p1.innerText=`ted`;
+            p1.innerText=id.snippet.title;
             div2.append(p1);
             div.style.marginTop="20px"
             div.innerHTML=`<iframe width="300px" height="200px" src="https://youtube.com/embed/${videoId}" title="youTube"></iframe>`
@@ -83,31 +83,6 @@
         })
         //console.log(data)
     }
-    async function globalCountry() {
-            //vdo_div.innerHTML=null;
-            //let channel = document.getElementById('name').value
-
-            let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=''&regionCode=IN&key=AIzaSyCgP8tm69dQdCiiqvcxTUygeuxBfni1LG0`);
-            let data = await res.json();
-            let ved = document.getElementById('vedio');
-            console.log('data:', data)
-            let { items } = data;
-            items = items.filter((el) => {
-                return el.id.videoId != undefined;
-            });
-            items.forEach(({ id: { videoId } }) => {
-                //console.log(videoId);
-                let div = document.createElement('div');
-                let div2 = document.createElement('div');
-                div2.setAttribute('id', 'detail2')
-                let p1 = document.createElement('p');
-                p1.innerText = `ted`;
-                div2.append(p1);
-                div.style.marginTop = "20px"
-                div.innerHTML = `<iframe width="300px" height="200px" src="https://youtube.com/embed/${videoId}" title="youTube"></iframe>`
-                vdo_div.append(div, div2);
-            })
-            //console.log(data)
-        }
-    globalCountry()
+    
+    //getCountry()
 </script>

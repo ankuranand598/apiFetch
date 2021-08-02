@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <title>Class</title>
+    <head>
+        <style></style>
+    </head>
+    <body>
+<h1>class in es6</h1>
+    </body>
+</html>
+<script>
+    //create object using stack
+    //initialize a stack.
+    class stack{
+        constructor(a){
+            this.stack=[];
+            this.length=0;
+
+        }
+        //methods
+        insert(...b){
+            b.forEach((el)=>{
+                this.stack.push(el);
+                this.length++;
+            })
+            
+            //console.log('pushed')
+        }
+        remove(){
+            this.stack.pop();
+            this.length--;
+        }
+    }
+   
+    let x= new stack();
+    x.insert('Atomic habits', 'Ikagai', 'hamlet')
+    x.remove();
+    console.log('x', x)
+</script>
