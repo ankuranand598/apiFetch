@@ -27,9 +27,9 @@
         <h1>Register</h1>
 
         <form onsubmit="Register(event)">
-            Name: <input type="text" id="inp1" /> Email: <input type="text" id="inp2" /> Password:
-            <input type="text" id="inp3" /> Username: <input type="text" id="inp4" /> Mobile:
-            <input type="text" id="inp5" /> Description: <input type="text" id="inp6" />
+            Name: <input type="text" id="inp1" /> Email: <input type="email" id="inp2" /> Password:
+            <input type="password" id="inp3" /> Username: <input type="text" id="inp4" /> Mobile:
+            <input type="tel" id="inp5" /> Description: <input type="text" id="inp6" />
             <input type="submit" />
         </form>
     </div>
@@ -39,7 +39,7 @@
         <form onsubmit="Login(event)">
             Username: <input type="text" id="inp7" />
 
-            Password: <input type="text" id="inp8" />
+            Password: <input type="password" id="inp8" />
             <input type="submit" />
         </form>
     </div>
@@ -56,16 +56,18 @@ let formData={
     password: document.getElementById('inp3').value,
     username: document.getElementById('inp4').value,
     mobile: document.getElementById('inp5').value,
-    discription: document.getElementById('inp6').value,
+    description: document.getElementById('inp6').value
 }
+
 formData=JSON.stringify(formData);
 //console.log(formData)
 fetch('https://masai-api-mocker.herokuapp.com/auth/register',{
     method:'POST',
     body:formData,
+     //type: 'no-cors',
     //additional info good approach
     headers:{
-        'Content-Type':'application/json',
+        'Content-Type':"application/json",
 
     },
 })
@@ -86,11 +88,12 @@ fetch('https://masai-api-mocker.herokuapp.com/auth/register',{
                 password: document.getElementById('inp8').value,
                 username: document.getElementById('inp7').value,
             }
-            formData = JSON.stringify(formData);
+            body = JSON.stringify(formData);
             //console.log(formData)
             fetch('https://masai-api-mocker.herokuapp.com/auth/login', {
                 method: 'POST',
-                body: formData,
+                body: body,
+                //type:'no-cors',
                 //additional info good approach
                 headers: {
                     'Content-Type': 'application/json',
@@ -102,9 +105,35 @@ fetch('https://masai-api-mocker.herokuapp.com/auth/register',{
                 })
                 .then((res) => {
                     console.log('res:', res);
+                    let u=formData.username;
+                    console.log(u);
+                    let t=res.token;
+                    console.log(t)
+                    let k=getmyProfile(u,t);
+                    if(res.error==false){
+                        window.location.href='homePage.html'
+                    }
                 })
                 .catch((err) => {
                     console.log('err:', err)
-                })
+                });
         }
+        
+            function getmyProfile(username,token){
+                fetch(`https://masai-api-mocker.herokuapp.com/user/${username}`,{
+                    headers:{
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then((res)=>{
+                    return res.json();
+                })
+                .then((res)=>{
+                    console.log('res:',res);
+                })
+                .catch((err)=>{
+                    console.log('err:',err)
+                })
+            }
+        
 </script>
