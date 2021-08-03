@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<title>example</title>
+
+<head></head>
+
+<body>
+    <h1>Google Api Fetch</h1>
+    <input type="text" id="search" placeholder="search" />
+    <button onclick="getSearch()">check</button>
+    <div id="place"></div>
+</body>
+
+</html>
+<script>
+    async function getSearch(){
+        let s= document.getElementById('search').value;
+        let place=document.getElementById('place');
+        place.innerHTML=null;
+        let result='';
+        console.log(s);
+        let ACCESS_KEY= 'fa07e1502867c37f5494694e245c1a10';
+        let op=await fetch('http://api.serpstack.com/search?access_key='+ ACCESS_KEY+'&type=web&query='+s);
+    let data= await op.json();
+     console.log(data);
+    let head = document.createElement('h3');
+     let res = document.createElement('div');
+     res.setAttribute('id','result');
+    let link = document.createElement('p');
+        data.organic_results.forEach((el)=>{
+        head.innerHTML=el.title;
+//console.log(el.title)
+       result+=`<h3>${el.title}</h3></br><a>${el.url}</a>`
+       res.innerHTML=`${result}`
+        
+    })
+    place.append(res)
+    }
+</script>
