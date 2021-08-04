@@ -1,50 +1,70 @@
 <!DOCTYPE html>
 <html>
-<title>Movies</title>
+<title>Youtube</title>
 
 <head>
     <style>
+ #main_div{
+    margin-top: -30px;
+ }       
 #logo{
     height: 40px;
     width: 150px;
-    
+    margin-top: 30px;
     
 }
 #name{
     width: 45%;
     height: 20px;
-    justify-content: center;
+    
     margin-left: 10%;
-    margin-top: -10px;
+    
 }
 #profile{
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    margin-left: 95%;
-    margin-top: -60px;
+    margin-top: 30px;
+    float: right;
+    
 }
 #main{
     display: flex;
 }
 #left{
     width: 18%;
-    border: 1px solid silver;
 }
-
+button + span{
+    margin-left: 80px;
+} 
 </style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-   <div>
+   <div id="main_div">
     <img id="logo"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG8S67-HXRBMePRNlkTYa9U3eQTdWU-vhvcM7YPRDqffAJylE7xtIYc_d4XYlqX7rRClc&usqp=CAU"/>
-    <input id="name" placeholder="Search Here" />
+    <input id="name" type="text" placeholder="Search Here" />
     
-    <button onclick="getCountry()">search</button>
+    <button onclick="getCountry()" class="material-icons">
+        search
+    </button>
+    <button class="material-icons">
+        keyboard_voice
+    </button>
+    <span class="material-icons">
+        apps
+    </span>
+    <span class="material-icons">
+        notifications
+    </span>
+    <span class="material-icons">
+        video_call
+    </span>
     <img id="profile" src="https://yt3.ggpht.com/yti/APfAmoGVguhIcPCP503k9BwihTPpvzlzXLBI3LjODdvjgw=s88-c-k-c0x00ffffff-no-rj-mo"/>
     
     <div id="main">
-        <div id="left">dff</div>
+        <div id="left"></div>
         <div>
             <div id="detail"></div>
         </div>
@@ -60,8 +80,8 @@
     async function getCountry(){
         //vdo_div.innerHTML=null;
         let channel = document.getElementById('name').value
-        
-        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${channel?channel:''}&regionCode=IN&key=AIzaSyCgP8tm69dQdCiiqvcxTUygeuxBfni1LG0`);
+        vdo_div.innerHTML=null;
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${channel}&maxResults=20&regionCode=in&key=AIzaSyCgP8tm69dQdCiiqvcxTUygeuxBfni1LG0`);
         let data = await res.json();
         let ved = document.getElementById('vedio');
         console.log('data:',data)
@@ -73,9 +93,9 @@
             console.log(videoId);
             let div =document.createElement('div');
             let div2= document.createElement('div');
-            div2.setAttribute('id','detail2')
+            div2.setAttribute('class','detail2')
             let p1= document.createElement('p');
-            p1.innerText=id.snippet.title;
+            //p1.innerText=id.snippet.title;
             div2.append(p1);
             div.style.marginTop="20px"
             div.innerHTML=`<iframe width="300px" height="200px" src="https://youtube.com/embed/${videoId}" title="youTube"></iframe>`
