@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Panda</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <div id="header"></div>
+    
+    <input id="food" type="text" placeholder="Wish a dish" oninput="showIp()" >
+    
+    
+    <div id="data"></div>
+</body>
+</html>
+<script type="module">
+       
+    //showMenu()
+   import showFood from "./snippets/snippet.js"; 
+   let head=document.getElementById('header');
+   head.innerHTML=showFood();
+   //import { showMenu, appendFood } from './scripts/showFood.js'
+  //import { showMenu, appendFood } from './scripts/showFood.js';
+</script>
+<script>
+ var timer; 
+async function showIp(){
+  let k=await foodFood()
+  console.log('k:',k)
+  if(timer){
+    return false;
+  }
+  timer=setTimeout(()=>{
+    appendFood(k);
+    timer=undefined;
+  },3000)
+  
+}
+  
+  let data = document.getElementById('data')
+  async function foodFood(){
+    var search = document.getElementById('food').value;
+    data.innerHTML= null;
+    try{
+    let op = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
+    let data1= await op.json()
+    console.log('data:',data1)
+    return data1.meals;
+    // data1.meals.forEach((el)=>{
+    //   if(search==el.strMeal){
+    //     let div1 = document.createElement('div');
+    //     let img = document.createElement('img');
+    //     img.src = el.strMealThumb;
+    //     let p = document.createElement('p');
+    //     p.innerText = el.strMeal;
+    //     div1.append(img, p);
+    //     data.append(div1);
+    //   }
+    // })
+      //strMeal
+      //console.log(data1.meals.strMeal==search)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+  function appendFood(d){
+    data.innerHTML = null;
+    d.forEach((el) => {
+      
+        let div1 = document.createElement('div');
+        let img = document.createElement('img');
+        img.src = el.strMealThumb;
+        let p = document.createElement('p');
+        p.innerText = el.strMeal;
+        div1.append(img, p);
+        data.append(div1);
+      
+    })
+  }
+</script>

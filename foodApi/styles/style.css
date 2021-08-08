@@ -1,0 +1,49 @@
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 4%;
+  padding-right: 4%;
+  border: solid 1px black;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.options h3 {
+  padding-left: 30px;
+  padding-right: 10px;
+}
+#data {
+  clear: both;
+}
+#data1 {
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  grid-gap: 5%;
+  justify-content: center;
+  padding: 5%;
+}
+img {
+  width: 30%;
+}
+#food {
+  margin-top: 40px;
+  margin-left: 30%;
+  width: 30%;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid rgb(118, 178, 228);
+}
+img {
+  height: 150px;
+  width: 150px;
+}
+#data {
+  display: grid;
+  grid-gap: 5%;
+  grid-template-columns: repeat(4, 20%);
+  margin-top: 10px;
+}

@@ -18,7 +18,7 @@ async function makeRequest() {
          console.log('err:', err);
     }
 }
-makeRequest()*/
+makeRequest()
 async function getWethers() {
     let city = document.getElementById('city').value;
     try { 
@@ -30,4 +30,38 @@ async function getWethers() {
 catch (err) {
     console.log('err:',err)
 }
+}*/
+function checkString(str,c) {
+    let count = 0;
+    let max = 0;
+    let obj = {}
+    for (let i = 0; i < str.length; i++){
+        
+    }
+}
+let s = 'zoomsessionmooz';
+let obj = {};
+let c=0
+for (let i = 0; i < s.length; i++) {
+    if (obj[s[i]] == undefined) {
+        obj[s[i]] = 1;
+    } else {
+        obj[s[i]]++;
+     }
+}
+for (key in obj) {
+    
+    c++
+}
+let res=''
+console.log(c)
+for (let j = 0; j < s.length; j++) {
+    res = ' ';
+    for (let k = j; k < s.length; k++) {
+        res += s[k]
+        //console.log(res.length)
+
+        
+    }
+     
 }

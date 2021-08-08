@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Panda</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div id="header"></div>
+
+
+    <div id="data"></div>
+</body>
+
+</html>
+<script type="module">
+    import showFood from "./snippets/snippet.js";
+    let head = document.getElementById('header');
+    head.innerHTML = showFood();
+
+</script>
+<script>
+      let data = document.getElementById('data')
+        var search = '';
+        async function foodFood() {
+
+            //search=
+            data.innerHTML = null;
+            try {
+                let op = await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`);
+                let data1 = await op.json()
+                console.log('data:', data1)
+                data1.meals.forEach((el) => {
+
+                    let div1 = document.createElement('div');
+                    let img = document.createElement('img');
+                    img.src = el.strMealThumb;
+                    let p = document.createElement('p');
+                    p.innerText = el.strMeal;
+                    div1.append(img, p);
+                    data.append(div1);
+                })
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        foodFood()
+</script>
